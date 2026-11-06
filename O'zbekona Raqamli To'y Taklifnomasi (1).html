@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sardorbek & Diyoraxon - Nikoh To'yi Taklifnomasi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- QRCode.js Kutubxonasi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#F3E5AB',
+                            DEFAULT: '#D4AF37',
+                            dark: '#AA7C11',
+                            metallic: '#C5A059'
+                        },
+                        emerald: {
+                            deep: '#062C21',
+                            royal: '#0A3C2E',
+                            light: '#125945'
+                        },
+                        ivory: {
+                            DEFAULT: '#FDFBF7',
+                            warm: '#F7F2E7'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #1F2937;
+            overflow-x: hidden;
+        }
+
+        .uzbek-pattern {
+            background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FDFBF7 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            background-color: #FDFBF7;
+        }
+
+        .emerald-pattern {
+            background-color: #062C21;
+            background-image: 
+                radial-gradient(circle at 100% 150%, #062C21 24%, #0A3C2E 25%, #0A3C2E 28%, #062C21 29%, #062C21 36%, #0A3C2E 36%, #0A3C2E 40%, transparent 40%, transparent),
+                radial-gradient(circle at 0    150%, #062C21 24%, #0A3C2E 25%, #0A3C2E 28%, #062C21 29%, #062C21 36%, #0A3C2E 36%, #0A3C2E 40%, transparent 40%, transparent),
+                radial-gradient(circle at 50%  100%, #0A3C2E 10%, #062C21 11%, #062C21 23%, #0A3C2E 24%, #0A3C2E 30%, #062C21 31%, #062C21 43%, #0A3C2E 44%, #0A3C2E 50%, #062C21 51%, #062C21 63%, #0A3C2E 64%, #0A3C2E 71%, transparent 71%, transparent);
+            background-size: 60px 30px;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #AA7C11 100%);
+        }
+
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.18), inset 0 0 15px rgba(212, 175, 55, 0.08);
+        }
+
+        .mehrob-arch {
+            border-radius: 220px 220px 24px 24px;
+        }
+
+        #welcome-gate {
+            transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.9s ease;
+        }
+        #welcome-gate.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spinSlow 45s linear infinite;
+        }
+
+        @keyframes pulseGold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+            50% { box-shadow: 0 0 0 14px rgba(212, 175, 55, 0); }
+        }
+        .pulse-gold {
+            animation: pulseGold 2.2s infinite;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-gold selection:text-emerald-deep">
+
+    <!-- MP3 Qo'shiq uchun joy (xohlasangiz src ichiga mp3 link qo'yishingiz mumkin) -->
+    <audio id="wedding-audio" src="" preload="auto" loop></audio>
+
+    <!-- Tilla yaproqchalar yog'ilishi uchun Canvas -->
+    <canvas id="petals-canvas" class="fixed inset-0 pointer-events-none z-40"></canvas>
+
+    <!-- 1. KIRISH DARVOZASI ("TAKLIFNOMANI OCHISH" EKRANI) -->
+    <div id="welcome-gate" class="fixed inset-0 z-50 emerald-pattern flex flex-col items-center justify-center p-4 text-center overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+            <svg class="w-[650px] h-[650px] animate-spin-slow text-gold" viewBox="0 0 200 200" fill="currentColor">
+                <path d="M100 0 L112 35 L141 19 L135 54 L171 54 L150 83 L184 95 L150 107 L171 136 L135 136 L141 171 L112 155 L100 190 L88 155 L59 171 L65 136 L29 136 L50 107 L16 95 L50 83 L29 54 L65 54 L59 19 L88 35 Z"/>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-md w-full bg-emerald-deep/95 backdrop-blur-md border-2 border-gold/60 mehrob-arch px-6 py-12 sm:px-10 sm:py-14 shadow-2xl">
+            <div class="text-gold text-xs tracking-[0.3em] uppercase mb-3 font-medium">Bismillahir Rohmanir Rohim</div>
+            
+            <div class="w-20 h-20 rounded-full border-2 border-gold/70 bg-gold/10 flex items-center justify-center mx-auto my-4 shadow-inner">
+                <span class="font-script text-3xl gold-gradient-text pr-1">S &amp; D</span>
+            </div>
+
+            <p class="text-gold-light/90 font-serif italic text-xl mb-2">Visol oqshomiga taklifnoma</p>
+            
+            <h1 class="font-script text-5xl sm:text-6xl gold-gradient-text py-2 leading-tight">
+                <span>Sardorbek</span>
+                <span class="block text-3xl my-1">&amp;</span>
+                <span>Diyoraxon</span>
+            </h1>
+
+            <div class="w-28 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mx-auto my-5"></div>
+
+            <div class="bg-white/5 border border-gold/30 rounded-2xl p-3.5 mb-7">
+                <p class="text-xs text-gold-light/70 uppercase tracking-widest mb-1">Hurmatli mehmonimiz</p>
+                <p id="gate-guest-name" class="font-serif text-xl text-white font-semibold">Sizni to'yimizga lutfan taklif etamiz!</p>
+            </div>
+
+            <button id="open-btn" onclick="openInvitation()" class="pulse-gold gold-gradient-bg text-emerald-deep font-bold px-8 py-4 rounded-full text-base sm:text-lg tracking-wide shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 mx-auto w-full sm:w-auto cursor-pointer">
+                <i class="fa-solid fa-envelope-open-text text-xl"></i>
+                <span>Taklifnomani ochish</span>
+            </button>
+
+            <p class="text-[11px] text-gold-light/60 mt-4 flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-music"></i> «To'ylar muborak» sadosi ostida ochiladi
+            </p>
+        </div>
+    </div>
+
+    <!-- SUZIB TURUVCHI MUSIQA TUGMASI -->
+    <div class="fixed bottom-5 right-5 z-40">
+        <button id="music-toggle-btn" onclick="toggleMusic()" class="group flex items-center gap-2.5 bg-emerald-deep/95 text-gold border-2 border-gold/70 px-4 py-3 rounded-full shadow-2xl hover:scale-105 transition-all cursor-pointer">
+            <div id="music-disc" class="w-7 h-7 rounded-full bg-gold/20 border border-gold flex items-center justify-center">
+                <i id="music-icon" class="fa-solid fa-music text-xs"></i>
+            </div>
+            <span id="music-label" class="text-xs font-semibold tracking-wider uppercase pr-1">Musiqa</span>
+        </button>
+    </div>
+
+    <!-- ASOSIY TAKLIFNOMA SAHIFASI -->
+    <main class="relative uzbek-pattern min-h-screen">
+
+        <!-- 1. BOSH SAHIFA (HERO SECTION) -->
+        <section class="relative min-h-screen flex items-center justify-center pt-12 pb-20 px-4 overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-emerald-deep via-gold to-emerald-deep"></div>
+
+            <div class="relative max-w-3xl w-full bg-white/95 backdrop-blur-md mehrob-arch gold-border-glow p-5 sm:p-12 text-center my-6">
+                <div class="border border-gold/40 mehrob-arch px-4 py-10 sm:px-10 sm:py-14 relative">
+                    <svg class="w-12 h-12 text-gold/50 mx-auto mb-3" viewBox="0 0 100 50" fill="currentColor">
+                        <path d="M50 0 C60 20 80 25 100 25 C80 25 60 30 50 50 C40 30 20 25 0 25 C20 25 40 20 50 0 Z"/>
+                    </svg>
+
+                    <p class="text-xs uppercase tracking-[0.3em] text-gold-dark font-bold mb-2">Bismillahir Rohmanir Rohim</p>
+                    <p class="font-serif italic text-xl sm:text-2xl text-emerald-deep mb-6">Assalomu alaykum, qadrli mehmonimiz!</p>
+
+                    <div class="my-4">
+                        <h2 class="font-script text-6xl sm:text-8xl text-emerald-deep leading-none drop-shadow-sm">Sardorbek</h2>
+                        <div class="flex items-center justify-center gap-4 my-3">
+                            <span class="h-[1px] w-16 bg-gold"></span>
+                            <span class="font-serif italic text-3xl text-gold-dark">&amp;</span>
+                            <span class="h-[1px] w-16 bg-gold"></span>
+                        </div>
+                        <h2 class="font-script text-6xl sm:text-8xl text-emerald-deep leading-none drop-shadow-sm">Diyoraxon</h2>
+                    </div>
+
+                    <p class="font-serif italic text-lg sm:text-xl text-gray-600 max-w-lg mx-auto mt-6 leading-relaxed">
+                        «Ikki qalb birlashib qurilar oila, <br>
+                        Baxt qasri bunyoddir ezgu duo ila...»
+                    </p>
+
+                    <div class="mt-8 inline-flex flex-wrap items-center justify-center gap-4 sm:gap-8 bg-emerald-deep text-white px-7 py-4 rounded-2xl shadow-xl border border-gold/50">
+                        <div class="text-center">
+                            <span class="block text-[11px] uppercase tracking-widest text-gold-light/80">Visol Sanasi</span>
+                            <span class="font-serif text-xl sm:text-2xl font-bold text-gold">15-Noyabr, 2026-yil</span>
+                        </div>
+                        <div class="h-8 w-[1px] bg-gold/30 hidden sm:block"></div>
+                        <div class="text-center">
+                            <span class="block text-[11px] uppercase tracking-widest text-gold-light/80">Boshlanish Vaqti</span>
+                            <span class="font-serif text-xl sm:text-2xl font-bold text-gold">Soat 18:00 da</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+                        <a href="#manzil-section" class="gold-gradient-bg text-emerald-deep font-semibold px-6 py-3 rounded-full text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot"></i> To'yxona manzili
+                        </a>
+                        <a href="#qr-section" class="bg-emerald-deep text-gold border border-gold/50 font-semibold px-6 py-3 rounded-full text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-qrcode"></i> QR Chipta olish
+                        </a>
+                        <a href="#rsvp-section" class="bg-ivory-warm hover:bg-gold/20 text-emerald-deep border border-gold/50 font-semibold px-6 py-3 rounded-full text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-feather-pointed text-gold-dark"></i> Tilak bildirish
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TAKLIFNOMA MATNI VA TO'Y EGALARI -->
+        <section class="py-16 px-4 bg-emerald-deep text-white relative overflow-hidden border-y-4 border-gold">
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div class="inline-block p-3.5 rounded-full bg-gold/10 border border-gold/30 text-gold mb-4">
+                    <i class="fa-solid fa-scroll text-2xl"></i>
+                </div>
+                
+                <h3 class="font-serif text-3xl sm:text-5xl gold-gradient-text font-bold mb-6">
+                    Aziz va Mo'tabar Mehmonimiz!
+                </h3>
+
+                <div class="bg-white/5 backdrop-blur-sm border border-gold/30 rounded-3xl p-6 sm:p-12 shadow-2xl text-center max-w-3xl mx-auto">
+                    <p class="font-serif text-xl sm:text-2xl leading-relaxed text-ivory/95 mb-6">
+                        Sizni va oila a'zolaringizni suyukli farzandlarimiz <br>
+                        <span class="text-gold font-bold">Sardorbek</span> va <span class="text-gold font-bold">Diyoraxon</span>larning
+                        nikoh to'yi munosabati bilan yoziladigan shohona visol dasturxonimizning aziz va qadrli mehmoni bo'lishga lutfan taklif etamiz!
+                    </p>
+
+                    <p class="text-sm sm:text-base text-gold-light/85 leading-relaxed mb-8">
+                        Quvonchli kunimizda sizning tabarruk qadamingiz, oq fotihangiz va samimiy tilaklaringiz yoshlarimizning baxtli hayot yo'liga fayz bag'ishlaydi.
+                    </p>
+
+                    <div class="w-32 h-[1px] bg-gold/40 mx-auto mb-6"></div>
+
+                    <p class="text-xs uppercase tracking-[0.2em] text-gold-light/70 mb-2">Hurmat va ehtirom ila,</p>
+                    <p class="font-serif text-2xl sm:text-3xl text-gold font-semibold">
+                        Jo'rayevlar va Alimovlar oilasi
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TESKARI SANOQ -->
+        <section class="py-16 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-bold">Baxtli onlarga oz qoldi</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-emerald-deep font-bold mt-1 mb-10">
+                    Visol Oqshomigacha Qolgan Vaqt
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-2xl mx-auto">
+                    <div class="bg-white rounded-2xl p-6 gold-border-glow">
+                        <span id="cd-days" class="font-serif text-4xl sm:text-6xl font-bold text-emerald-deep block">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gold-dark font-semibold mt-2 block">Kun</span>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 gold-border-glow">
+                        <span id="cd-hours" class="font-serif text-4xl sm:text-6xl font-bold text-emerald-deep block">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gold-dark font-semibold mt-2 block">Soat</span>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 gold-border-glow">
+                        <span id="cd-minutes" class="font-serif text-4xl sm:text-6xl font-bold text-emerald-deep block">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gold-dark font-semibold mt-2 block">Daqiqa</span>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 gold-border-glow">
+                        <span id="cd-seconds" class="font-serif text-4xl sm:text-6xl font-bold text-gold-dark block">00</span>
+                        <span class="text-xs sm:text-sm uppercase tracking-widest text-gold-dark font-semibold mt-2 block">Soniya</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. TO'YXONA MANZILI VA DASTUR -->
+        <section id="manzil-section" class="py-16 px-4 bg-ivory-warm/70 border-y border-gold/20">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-bold">Manzil va Kun Tartibi</span>
+                    <h3 class="font-serif text-3xl sm:text-5xl text-emerald-deep font-bold mt-1">
+                        Tantana Dasturi va Koshona
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Manzil -->
+                    <div class="lg:col-span-5 bg-white rounded-3xl p-7 sm:p-8 gold-border-glow text-center flex flex-col justify-between">
+                        <div>
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-deep text-gold flex items-center justify-center mx-auto mb-5 shadow-md">
+                                <i class="fa-solid fa-landmark-dome text-2xl"></i>
+                            </div>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Visol Koshonasi</span>
+                            <h4 class="font-serif text-3xl font-bold text-emerald-deep mt-1 mb-2">«Versal» tantanalar saroyi</h4>
+                            <p class="text-gray-600 text-sm mb-4">Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 12-uy</p>
+                            <div class="bg-ivory-warm rounded-2xl p-4 border border-gold/30 text-xs text-gray-600 mb-6">
+                                <i class="fa-solid fa-route text-gold-dark mr-1"></i> <strong>Mo'ljal:</strong> «Novza» metro bekati yaqinida
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="https://maps.google.com" target="_blank" class="bg-emerald-deep text-gold hover:bg-emerald-royal py-3 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Xarita
+                            </a>
+                            <a href="https://2gis.uz" target="_blank" class="gold-gradient-bg text-emerald-deep py-3 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-location-arrow"></i> 2GIS Xarita
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- To'y kuni tartibi -->
+                    <div class="lg:col-span-7 bg-white rounded-3xl p-7 sm:p-8 gold-border-glow flex flex-col justify-center space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-gold/15 border border-gold text-emerald-deep flex items-center justify-center shrink-0 font-bold text-sm">07:00</div>
+                            <div>
+                                <h5 class="font-serif text-2xl font-bold text-emerald-deep">Nahor Oshi</h5>
+                                <p class="text-sm text-gray-600">El-yurt va mahalla ahli uchun bayramona nahor oshi dasturxoni</p
